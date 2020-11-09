@@ -1,0 +1,36 @@
+/*
+This makes the HTML element a sticky footer (always at bottom of screen)
+*/
+.headroom {
+	margin-top: 1rem;
+	padding: 1rem;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.is-justified-center {
+	justify-content: center;
+}
+
+.hidden {
+	display: none;
+}
+
+/*
+This prevent the icons form within the button from having pointer events,
+therefore the event target will always be the button
+*/
+button > * {
+	pointer-events: none;
+}
+
+.char-list > tr:hover {
+	background-color: hsl(171, 100%, 96%);
+	cursor: pointer;
+}
+
+.splash {
+	margin-top: 15%;
+}
