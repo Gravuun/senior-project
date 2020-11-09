@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
+// If user is not signed in only display sign up or sign in links
 class SignedOutLinks extends Component {
 	render() {
 		return (

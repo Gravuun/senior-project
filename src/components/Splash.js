@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// Generic Welcome screenthat all users who are not signed in are directed to - allows for navigation only to sign up or login pages
 const Splash = () => {
 	return (
 		<div className="splash has-text-centered is-vcentered">

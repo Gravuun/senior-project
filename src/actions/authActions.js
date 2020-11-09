@@ -1,3 +1,8 @@
+/* 
+Sign In action calls the login function and passes the email and password as credentials
+Upon success the user is routed to the character viewing screen
+Upon failure the user stays on the sign in page and the firbase auth error is printed out
+*/
 export const signIn = (credentials) => {
 	return (dispatch, getState, getFirebase) => {
 		const firebase = getFirebase();
@@ -13,6 +18,9 @@ export const signIn = (credentials) => {
 	};
 };
 
+/* 
+Sign out call the firebase logout function, not arguements necessary
+*/
 export const signOut = () => {
 	return (dispatch, getState, getFirbase) => {
 		const firebase = getFirbase();
@@ -23,6 +31,16 @@ export const signOut = () => {
 	};
 };
 
+/* 
+Sign up function creates a new user in firebase auth and then takes
+the generated user id and creates a profile entry in the users collection of
+firestore
+
+Upon success the user is routed to the character viewing screen
+Upon failure the user stays on the sign in page and the firbase auth error is printed out
+
+Firebase auth provides email checking and rudimentary password requirements
+*/
 export const signUp = (newUser) => {
 	return (dispatch, getState, getFirbase) => {
 		const firebase = getFirbase();

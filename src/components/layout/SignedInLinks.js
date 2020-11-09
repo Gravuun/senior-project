@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOut } from "../../actions/authActions";
 
+// If user is authenticated give create character button along with greeting and logout button
 class SignedInLinks extends Component {
 	render() {
 		return (

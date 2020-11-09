@@ -3,6 +3,9 @@ import Select from "react-select";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+/*
+Require user to name character and choose priorities for each field
+*/
 class PriorityTable extends Component {
 	state = {
 		name: "",

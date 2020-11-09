@@ -6,9 +6,11 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 
+/* 
+Dashboard where the user can see a button to create a character and their already created characters
+*/
 class UserChars extends Component {
 	render() {
-		console.log(this.props);
 		const { auth } = this.props;
 
 		if (!auth.uid) return <Redirect to="/Welcome" />;

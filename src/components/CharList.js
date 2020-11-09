@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+// Display all characters the user has in a table with each being clickable to show details
 const CharList = (props) => {
 	const { characters, user } = props;
 

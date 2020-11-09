@@ -10,13 +10,16 @@ import { createFirestoreInstance } from "redux-firestore";
 import { ReactReduxFirebaseProvider, getFirebase } from "react-redux-firebase";
 import firebase from "./config/fbConfig.js";
 
+// Create Redux store with thunk middleware that allows the passing of firebase to actions
 const store = createStore(
 	rootReducer,
 	applyMiddleware(thunk.withExtraArgument(getFirebase))
 );
 
+// Config for react-redux-firebase saying that userProfiles are stored in the "users" collection in firestore and that firestore should hold profiles
 const rrfConfig = { userProfile: "users", useFirestoreForProfile: true };
 
+// Props to be passed to react-redux-firebase
 const rrfProps = {
 	firebase,
 	config: rrfConfig,
@@ -24,6 +27,7 @@ const rrfProps = {
 	createFirestoreInstance,
 };
 
+// Base render method that supplies App with the Redux store and firebase access
 ReactDOM.render(
 	<Provider store={store}>
 		<ReactReduxFirebaseProvider {...rrfProps}>

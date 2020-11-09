@@ -3,6 +3,12 @@ import { connect } from "react-redux";
 import { signIn } from "../../actions/authActions";
 import { Redirect } from "react-router-dom";
 
+/*
+Sign in page asks for the user's email and password
+Email is weakly checked for validity and upon pass a checkmark is dispalyed
+
+Password is not check at all on client side, firebase auth handles that in projectActions.js
+*/
 class SignIn extends Component {
 	state = {
 		email: "",

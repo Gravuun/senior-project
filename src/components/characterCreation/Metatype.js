@@ -3,6 +3,9 @@ import Select from "react-select";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+/*
+Populate possible metatypes and magic roles based on chosen priority values
+*/
 class Metatype extends Component {
 	state = {
 		options: [{ metatype: "Human", points: 1 }],
@@ -27,7 +30,6 @@ class Metatype extends Component {
 	};
 
 	componentDidMount() {
-		console.log("update triggered");
 		if (
 			this.props.metatypePriority !== this.state.metaPriority ||
 			this.props.magicPriority !== this.state.magicPriority
@@ -37,7 +39,6 @@ class Metatype extends Component {
 	}
 
 	componentDidUpdate() {
-		console.log("update triggered");
 		if (
 			this.props.metatypePriority !== this.state.metaPriority ||
 			this.props.magicPriority !== this.state.magicPriority
@@ -48,8 +49,6 @@ class Metatype extends Component {
 
 	componentWillUnmount() {
 		if (this.state.roles === undefined || this.state.roles.length === 0) return;
-		console.log("Chosen metatype: " + this.state.metatype);
-		console.log(this.state.specialAP);
 		const chosen = this.state.roles.find(
 			(role) => role.id === this.state.selectedRole.value
 		);
@@ -186,20 +185,12 @@ class Metatype extends Component {
 			let stats = this.state.roles.find((role) => {
 				return selectedRole.value === role.id;
 			});
-			console.log(this.state.roles);
-			console.log(stats);
-			this.setState(
-				{
-					...this.state,
-					selectedRole: selectedRole,
-					magic: stats.magic,
-					resonance: stats.resonance,
-				},
-				() => {
-					console.log(this.state);
-					console.log(this.state.magic);
-				}
-			);
+			this.setState({
+				...this.state,
+				selectedRole: selectedRole,
+				magic: stats.magic,
+				resonance: stats.resonance,
+			});
 		}
 	};
 
@@ -208,17 +199,11 @@ class Metatype extends Component {
 			let choice = this.state.options.find((pick) => {
 				return selectedRadio.target.id === pick.id;
 			});
-			console.log(choice.metatype);
-			this.setState(
-				{
-					...this.state,
-					metatype: choice.metatype,
-					specialAP: choice.points,
-				},
-				() => {
-					console.log(choice.points);
-				}
-			);
+			this.setState({
+				...this.state,
+				metatype: choice.metatype,
+				specialAP: choice.points,
+			});
 		}
 	};
 

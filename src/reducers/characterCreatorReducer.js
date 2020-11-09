@@ -41,6 +41,7 @@ const initState = {
 	},
 };
 
+// Character creator reducer changes redux store state between each of the character creation pages
 const characterCreatorReducer = (state = initState, action) => {
 	if (action.type === "POPULATE_TABLE") {
 		return {

@@ -1,3 +1,7 @@
+/*
+Adds a new fully populated character to the characters collection in firestore
+The character is also associated with the user by adding the user's id to the character
+*/
 export const createChar = (character) => {
 	return (dispatch, getState, getFirebase) => {
 		const fireStore = getFirebase();

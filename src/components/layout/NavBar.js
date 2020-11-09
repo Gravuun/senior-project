@@ -5,10 +5,12 @@ import SignedInLinks from "./SignedInLinks";
 import logo from "../../img/Shadowrun-logo.png";
 import { connect } from "react-redux";
 
+// Display nav bar at top of window
 class NavBar extends Component {
 	render() {
 		const { auth, name } = this.props;
 
+		// If youser is logged in shoe SignedInLinks component, else display SignOutLinks component
 		const links = auth.uid ? <SignedInLinks name={name} /> : <SignedOutLinks />;
 
 		return (

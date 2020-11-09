@@ -3,6 +3,13 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../actions/authActions";
 
+/*
+Sign up page asks for the user's first name, last name, email, and password
+Email is weakly checked for validity and upon pass a checkmark is dispalyed
+
+Password is not check at all on client side, firebase auth provides rudimentary complexity requirements when this is
+submitted in projectActions.js
+*/
 class SignUp extends Component {
 	state = {
 		email: "",

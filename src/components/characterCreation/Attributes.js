@@ -3,6 +3,14 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createChar } from "../../actions/projectActions.js";
 
+/* 
+Final page in current character creation.
+User spends all of their attribute points in any of the specified fields
+Special attribute points do not have to be exhausted
+
+Upon submission the character is generated and the user is directed to the dashboard
+*/
+
 class Attributes extends Component {
 	state = {
 		toMagic: false,
@@ -72,9 +80,11 @@ class Attributes extends Component {
 		}
 	}
 
+	/*
+	Populate the Ability points based on chosen priority and Special Ability points based on metatype and metatype priority
+	Also set base and max values of stats based on metatype and magic priority and role
+	*/
 	handlePriority = () => {
-		console.log("handlePriority fired");
-		console.log(this.props.newCharacter.metatype);
 		let priority = this.props.newCharacter.attributePriority;
 		let attributes = {};
 		let ap = 0;
@@ -248,6 +258,7 @@ class Attributes extends Component {
 		}
 	};
 
+	// Increment selected stat and subtract 1 from ability point pool
 	handleClickPlus = (e) => {
 		if (this.state.newCharacter.ap === 0) {
 			return;
@@ -256,30 +267,23 @@ class Attributes extends Component {
 		let ap = this.state.newCharacter.ap - 1;
 		let toMagic = ap === 0;
 
-		console.log(attr);
-
 		if (
 			attr === "body" &&
 			this.state.newCharacter.attributes.body <
 				this.state.newCharacter.attributes.bodyMax
 		) {
 			let body = this.state.newCharacter.attributes.body + 1;
-			this.setState(
-				{
-					newCharacter: {
-						...this.state.newCharacter,
-						ap,
-						attributes: {
-							...this.state.newCharacter.attributes,
-							body,
-						},
+			this.setState({
+				newCharacter: {
+					...this.state.newCharacter,
+					ap,
+					attributes: {
+						...this.state.newCharacter.attributes,
+						body,
 					},
-					toMagic,
 				},
-				() => {
-					console.log(this.state.newCharacter);
-				}
-			);
+				toMagic,
+			});
 			if (body > this.state.bodyMin) {
 				document.getElementById("bodyMinus").disabled = false;
 				if (body === this.state.newCharacter.attributes.bodyMax) {
@@ -452,10 +456,10 @@ class Attributes extends Component {
 		}
 	};
 
+	// Decrement selected stat and add 1 to the ability point pool
 	handleClickMinus = (e) => {
 		let attr = e.target.name;
 		let ap = this.state.newCharacter.ap + 1;
-		console.log(attr + " " + ap + " " + this.state.bodyMin);
 
 		if (
 			attr === "body" &&
@@ -637,13 +641,13 @@ class Attributes extends Component {
 		}
 	};
 
+	// Increment selected stat and subtract 1 from special ability point pool
 	handleSpecialClickPlus = (e) => {
 		if (this.state.newCharacter.specialAP === 0) {
 			return;
 		}
 		let attr = e.target.name;
 		let specialAP = this.state.newCharacter.specialAP - 1;
-		console.log(e.target.name);
 
 		if (
 			attr === "edge" &&
@@ -651,21 +655,16 @@ class Attributes extends Component {
 				this.state.newCharacter.attributes.edgeMax
 		) {
 			let edge = this.state.newCharacter.attributes.edge + 1;
-			this.setState(
-				{
-					newCharacter: {
-						...this.state.newCharacter,
-						specialAP,
-						attributes: {
-							...this.state.newCharacter.attributes,
-							edge,
-						},
+			this.setState({
+				newCharacter: {
+					...this.state.newCharacter,
+					specialAP,
+					attributes: {
+						...this.state.newCharacter.attributes,
+						edge,
 					},
 				},
-				() => {
-					console.log(this.state.newCharacter);
-				}
-			);
+			});
 			if (edge > this.state.edgeMin) {
 				document.getElementById("edgeMinus").disabled = false;
 				if (edge === this.state.newCharacter.attributes.edgeMax) {
@@ -705,10 +704,10 @@ class Attributes extends Component {
 		}
 	};
 
+	// Decrement selected stat and add 1 to special ability point pool
 	handleSpecialClickMinus = (e) => {
 		let attr = e.target.name;
 		let specialAP = this.state.newCharacter.specialAP + 1;
-		console.log(attr + " " + specialAP + " " + this.state.bodyMin);
 
 		if (
 			attr === "edge" &&

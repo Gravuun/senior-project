@@ -4,6 +4,11 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 
+/* 
+Display for created character
+Shows name, metatype, magic role, stats and resources
+Static page, no editing allowed
+*/
 class Character extends Component {
 	render() {
 		const { character, auth } = this.props;
